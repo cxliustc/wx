@@ -12,6 +12,7 @@ export default {
 </script>
 
 <style>
+@import './assert/css/index.less';
 .container {
   height: 100%;
   display: flex;

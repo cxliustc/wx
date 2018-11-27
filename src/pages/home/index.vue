@@ -65,7 +65,7 @@
 <script>
 import {homeApis} from '../../apis'
 import ProductList from '../components/product-list'
-import SwiperList from '../components/swiper-list'
+// import SwiperList from '../components/swiper-list'
 import Collection from '../components/collection'
 // import {v4} from 'node-uuid'
 console.log(homeApis)
@@ -94,7 +94,7 @@ export default {
 	},
 	components: {
 		'product-list': ProductList,
-		'swiper-list': SwiperList,
+		// 'swiper-list': SwiperList,
 		'collection': Collection
 	}
 }
