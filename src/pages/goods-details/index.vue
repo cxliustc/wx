@@ -10,7 +10,7 @@
 				<span v-else>默认图</span>
 			</swiper-item>
 		</swiper>
-		<div class="cart">
+		<div class="goods-details-cart">
 			<div class="goods-msg">
 				<p class="goods-name">红花瓷碗2只</p>
 				<p class="goods-price"></p>
@@ -47,12 +47,39 @@ export default {
 </script>
 <style lang="less" scoped>
 @import '../../assert/css/varibale.less';
+	.goods-details{
+		
+	}
 	.goods-details-banner{
 		width: 100%;
 		height: 364px;
 		.goods-details-swiper-slide, img{
 			width: 100%;
 			height: 100%;
+		}
+	}
+	.goods-details-cart{
+		width: 100%;
+		height: 124px;
+		background: #f8f8f8;
+		padding: 0 15px;
+		box-sizing: border-box;
+		.goods-msg{
+			width: 100%;
+			height: 80px;
+			line-height: 44px;
+			padding-left: 15px;
+			padding-right: 18px;
+			margin-top: -30px;
+			border-radius: 2px;
+			padding-top: 2px;
+			background: #fff;
+			box-sizing: border-box;
+			position: relative;
+			z-index: 9;
+			.goods-name{
+				font-size: 16px;
+			}
 		}
 	}
 </style>
