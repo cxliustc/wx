@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/goods-details/main"
+    "pages/goods-details/main",
+    "pages/addresslist/main",
+    "pages/user/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

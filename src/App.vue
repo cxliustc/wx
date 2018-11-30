@@ -13,6 +13,7 @@ export default {
 
 <style>
 @import './assert/css/index.less';
+@import './assert/css/iconfont.css';
 .container {
   height: 100%;
   display: flex;
