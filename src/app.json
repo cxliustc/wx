@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/home/main"
+    "pages/addresslist/main",
+    "pages/user/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

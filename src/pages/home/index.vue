@@ -6,6 +6,7 @@
 				<span>新人专区</span>
 				<span>新人限时专享</span>
 			</header>
+			<product-list :list="fieldItems"></product-list>
 			<scroll-view scroll-x>
 				<div class="scroll-container">
 					<a href="">
