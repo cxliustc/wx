@@ -1,12 +1,15 @@
 <template>
 	<div class="goods-details">
+		<!-- 
+			@scrolltolower="scrolltolower"
+			@scroll="scroll"
+		 -->
 		<scroll-view
 			class="goods-details-content"
 			:scroll-y="true"
-			@scrolltolower="scrolltolower"
-			@scroll="scroll"
 		>
 			<swiper class="goods-details-banner"
+			circular="true"
 				:autoplay='bannerSeting.autoplay'
 				:interval='bannerSeting.interval'
 				:duration='bannerSeting.duration'
@@ -37,7 +40,7 @@
 							<img :src="item.imgUrl" alt="">
 						</li>
 					</ul>
-					<div class="record-exchange-arrow iconfont icon-jiantou"></div>
+					<div class="record-exchange-arrow iconfont icon-jiantou" @click='goToRecord'></div>
 				</div>
 			</div>
 			<div class="instructions">
@@ -79,16 +82,6 @@ export default {
 				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
 			}, {
 				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
 			}],
 			bannerSeting: {
 				autoplay: true,//是否开启自动切换
@@ -100,13 +93,18 @@ export default {
 	components: {
 	},
 	methods: {
-		scrolltolower(){
-			console.log(7)
-		},
-		scroll(e) {
-			console.log(6)
-			console.log(e)
-		},
+		// scrolltolower(){
+		// 	console.log(7)
+		// },
+		// scroll(e) {
+		// 	console.log(6)
+		// 	console.log(e)
+		// },
+		goToRecord () {
+            wx.navigateTo({
+                url: '/pages/goods-details-record/main'
+            })
+        }
 	}
 }
 </script>
@@ -121,7 +119,6 @@ export default {
 			overflow-y: auto;
 			overflow-x: hidden;
 			-webkit-overflow-scrolling: touch;
-			overflow-scrolling: touch;
 			flex: 1;
 		}
 		.goods-details-btn{
