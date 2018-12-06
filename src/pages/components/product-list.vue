@@ -3,7 +3,7 @@
         <li v-for="(array, index) in productList" :key="index">
             <div class="product-container">
                 <div v-for="(item, key) in array" :key="key" :style="{width: productWidth}" class="product">
-                    <a class="img-link" href="">
+                    <a class="img-link" href="/pages/goods-details/main">
                         <div>
                             <div class="img-container" :style="{width, height: width}">
                                 <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=180312266,3639093672&fm=173&app=25&f=JPEG?w=218&h=146&s=5A27AE40185A464F0AABF952030050FA" alt="">
