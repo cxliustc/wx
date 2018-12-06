@@ -2,7 +2,9 @@
   "pages": [
     "pages/home/main",
     "pages/user/main",
-    "pages/addresslist/main"
+    "pages/addresslist/main",
+    "pages/goods-details/main",
+    "pages/goods-details-record/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
