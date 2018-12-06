@@ -3,10 +3,10 @@
         <li v-for="(array, index) in productList" :key="index">
             <div class="product-container">
                 <div v-for="(item, key) in array" :key="key" :style="{width: productWidth}" class="product">
-                    <a class="img-link" href="">
+                    <a class="img-link" href="/pages/goods-details/main">
                         <div>
                             <div class="img-container" :style="{width, height: width}">
-                                <img src="" alt="">
+                                <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=180312266,3639093672&fm=173&app=25&f=JPEG?w=218&h=146&s=5A27AE40185A464F0AABF952030050FA" alt="">
                             </div>
                         </div>
                         <div class="title">
@@ -16,11 +16,15 @@
                         </div>
                     </a>
                     <div>
-                        <span class="price">9</span>
-                        <span class="exchange-number">兑换人数</span>
+                        <span class="price">
+                            <i class="iconfont icon-hotfill"></i>
+                            9
+                        </span>
+                        <span class="exchange-number">兑换人数：12342</span>
                     </div>
                     <a class="detail-link" href="">
                         <div>
+                            <i class="iconfont icon-duihuan"></i>
                             免费兑换
                         </div>
                     </a>
@@ -71,6 +75,7 @@ export default {
 }
 </script>
 <style lang="less">
+@import '../../assert/css/varibale.less';
 .default-flex (@flex: flex; @border: 0px solid black; @position: relative) {
 	border: @border;
 	position: relative;
@@ -120,6 +125,7 @@ ul {
                     >div.title {
                         .default-flex;
                         padding: 10px 10px 0px;
+                        font-weight: bold;
                         >span {
                             .default-flex(-webkit-box);
                             white-space: pre-wrap;
@@ -144,7 +150,14 @@ ul {
                     align-content: center;
                     justify-content: center;
                     >div {
+                        .flex;
+                        flex-direction: row;
                         font-size: 14px;
+                        >i{
+                            font-size: 16px;
+                            color:orange;
+                            margin-right: 5px;
+                        }
                     }
                 }
                 >div {
@@ -153,17 +166,24 @@ ul {
                     width: 100%;
                     -webkit-box-align: center;
                     >span.price {
-                        .default-flex(block; 0px solid black; relative);
+                        .flex;
+                        flex-direction: row;
                         font-size: 12px;
                         text-align: left;
                         line-height: 28px;
                         margin-left: 10px;
+                        >i{
+                            font-size: 12px;
+                            color:#bd3a21;
+                            margin-right: 5px;
+                        }
                     }
                     >span.exchange-number {
                         // height: 23px;
                         line-height: 28px;
                         position: absolute;
                         right: 8px;
+                        color:#939393;
                         // top: 8.5px;
                         font-size: 12px;
                     }
