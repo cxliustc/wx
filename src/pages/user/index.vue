@@ -43,10 +43,12 @@
                 <li></li>
             </ul>
         </div>
+        <tab-bar :tabBarList="tabBarList" :current='3'></tab-bar>
     </div>
 </template>
 <script>
 import {userApi} from '../../apis/index'
+import TabBar from '../components/tab-bar'
 const personalOrdersList = [
     {
         icon: 'icon-pay',
@@ -102,14 +104,35 @@ const personalModulesList = [
         name: '助力列表'
     }
 ]
+const tabBarList = [{
+	title: '首页',
+	icon: ['iconfont', 'icon-home'],
+	default: 0
+}, {
+	title: '活动',
+	icon: ['iconfont', 'icon-present'],
+	default: 1
+}, {
+	title: '汗水日记',
+	icon: ['iconfont', 'icon-home'],
+	default: 2
+}, {
+	title: '我的',
+	icon: ['iconfont', 'icon-my'],
+	default: 3
+}]
 export default {
     data () {
         return {
             personalOrders: personalOrdersList,
             personalModules: personalModulesList,
-            recommendApps: []
+            recommendApps: [],
+            tabBarList
         }
     },
+    components: {
+		'tab-bar': TabBar
+	},
     created () {
     },
     methods: {
