@@ -1,31 +1,32 @@
 <template>
-    <div class="address">
+    <div class="addressCont">
         <div class="addressList">
-        <div class='detail' v-for='(item, index) in addressList' :key='index'>
-            <p class='nameAndTel'>
-                <span class='name'>{{item.name}}</span>
-                <span class='phone'>{{item.phone}}</span>
-            </p>
-            <p class="address">{{item.address}}</p>
-            <p class='operation'>
-                <span v-if='item.isDefault' class="default">[默认]</span>
-                <span v-else class="notDefault" @click="setDefaultFn(item.id)">设为默认</span>
-                <span class='edit'>
-                    <span @click="editFn(item.id)">
-                        <i class="iconfont icon-edit"></i>
-                        编辑
+            <div class='detail' v-for='(item, index) in addressList' :key='index'>
+                <p class='nameAndTel'>
+                    <span class='name'>{{item.name}}</span>
+                    <span class='phone'>{{item.phone}}</span>
+                </p>
+                <p class="address">{{item.address}}</p>
+                <p class='operation'>
+                    <span v-if='item.isDefault' class="default">[默认]</span>
+                    <span v-else class="notDefault" @click="setDefaultFn(item.id)">设为默认</span>
+                    <span class='edit'>
+                        <span @click="editFn(item.id)">
+                            <i class="iconfont icon-edit"></i>
+                            编辑
+                        </span>
+                        <span @click="deleteFn(item.id)">
+                            <i class="iconfont icon-delete"></i>
+                            删除
+                        </span>
                     </span>
-                    <span @click="deleteFn(item.id)">
-                        <i class="iconfont icon-delete"></i>
-                        删除
-                    </span>
-                </span>
-            </p>
+                </p>
+            </div>
         </div>
-    </div>
-    <a href="javascript:;">
-        <i class="iconfont icon-add"></i>
-    </a>
+        <a href="" class="addBtn" @click='addAddress()'>
+            <i class="iconfont icon-add"></i>
+            <span>添加地址</span>
+        </a>
     </div>
 </template>
 <script>
@@ -61,13 +62,20 @@ export default {
     },
     methods: {
         editFn (id) {
-            console.log(id)
+            wx.navigateTo({
+                url: `/pages/edit-address/main?id=${id}`
+            })
         },
         deleteFn (id) {
             console.log(id)
         },
         setDefaultFn (id) {
             console.log(id)
+        },
+        addAddress () {
+            wx.navigateTo({
+                url: '/pages/edit-address/main'
+            })
         }
     }
 }
@@ -76,8 +84,7 @@ export default {
 @import '../../assert/css/varibale.less';
 .addressList{
     width:100%;
-    background: #ececec;
-    min-height:670px;
+    flex: 1;
     .flex;
     margin-top: 10px;
     .detail{
@@ -99,6 +106,7 @@ export default {
             }
         }
         .address{
+            
             color:#939393;
             font-size: 12px;
             padding-bottom: 10px;
@@ -140,6 +148,28 @@ export default {
                 }
             }
         }
+    }
+}
+.addressCont{
+    .flex;
+    height:100vh;
+    flex-direction: column;
+    justify-content: center;
+    background: #ececec;
+}
+.addBtn{
+    margin-bottom: 30px;
+    width:90%;
+    .flex;
+    height:35px;
+    border: 1px solid orange;
+    border-radius: 50px;
+    justify-content: center;/*水平居中*/
+    flex-direction: row;
+    align-items: center;
+    span,i{
+        color:orange;
+        font-size: 14px;
     }
 }
 </style>
