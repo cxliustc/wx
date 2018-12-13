@@ -1,18 +1,14 @@
 <template>
 	<div class="goods-details">
-		<!-- 
-			@scrolltolower="scrolltolower"
-			@scroll="scroll"
-		 -->
 		<scroll-view
 			class="goods-details-content"
 			:scroll-y="true"
 		>
 			<swiper class="goods-details-banner"
 			circular="true"
-				:autoplay='bannerSeting.autoplay'
-				:interval='bannerSeting.interval'
-				:duration='bannerSeting.duration'
+				:autoplay='true'
+				:interval='3000'
+				:duration='500'
 			>
 				<swiper-item class="goods-details-swiper-slide" v-for='(item, index) in banner_url' :key='index'>
 					<img v-if="item.imgUrl" class="imgw" :src='item.imgUrl' />
@@ -60,8 +56,8 @@
 			</div>
 		</scroll-view>
 		<div class="goods-details-btn">
-			<div class="collection">
-				<i class="iconfont">&#xe657;</i>
+			<div class="collection" @click="chackcollection">
+				<i :class="['iconfont', collection ? 'icon-xingxing': 'icon-xingxingkongxin']"></i>
 				<i>收藏</i>
 			</div>
 			<div class="invitation">燃力不足，快去邀请好友得步数吧</div>
@@ -74,32 +70,26 @@ console.log(homeApis)
 export default {
 	data () {
 		return {
-			banner_url: [{
-				imgUrl: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=377176237,4092470524&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1874628832,491201434&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}, {
-				imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
-			}],
-			bannerSeting: {
-				autoplay: true,//是否开启自动切换
-				interval: 3000,//自动切换时间间隔
-				duration: 500//滑动动画时长
-			}
+			banner_url: [
+				{
+					imgUrl: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=377176237,4092470524&fm=26&gp=0.jpg'
+				}, {
+					imgUrl: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1874628832,491201434&fm=26&gp=0.jpg'
+				}, {
+					imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
+				}, {
+					imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=93545208,3548906171&fm=26&gp=0.jpg'
+				}
+			],
+			collection: false
 		}
 	},
 	components: {
 	},
 	methods: {
-		// scrolltolower(){
-		// 	console.log(7)
-		// },
-		// scroll(e) {
-		// 	console.log(6)
-		// 	console.log(e)
-		// },
+		chackcollection () {
+			this.collection = !this.collection
+		},
 		goToRecord () {
             wx.navigateTo({
                 url: '/pages/goods-details-record/main'
@@ -140,6 +130,9 @@ export default {
 				padding-top: 4px;
 				cursor: pointer;
 				-webkit-tap-highlight-color:rgba(255,255,255,0);
+				.icon-xingxing{
+					color: #fc6c55;
+				}
 			}
 			.invitation{
 				flex: 1;
