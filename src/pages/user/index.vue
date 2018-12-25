@@ -98,7 +98,8 @@ const personalModulesList = [
         name: '收藏'
     }, {
         icon: 'icon-peoplelist',
-        name: '好友列表'
+        name: '好友列表',
+        url: '/pages/friends-ranking/main'
     }, {
         icon: 'icon-form_favor_light',
         name: '助力列表'

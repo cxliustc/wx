@@ -1,28 +1,28 @@
 // 封装请求的api
-import axios from 'axios'
+// import axios from 'axios'
 
-axios.defaults.timeout = 10000
-axios.defaults.withCredentials = true
-axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+// axios.defaults.timeout = 10000
+// axios.defaults.withCredentials = true
+// axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // interceptors
 // 请求的拦截器
 
-function handleError (error) {
-	return Promise.reject(error)
-}
+// function handleError (error) {
+// 	return Promise.reject(error)
+// }
 
-axios.interceptors.request.use(config => {
-	return config
-}, handleError)
+// axios.interceptors.request.use(config => {
+// 	return config
+// }, handleError)
 
 // response的拦截器
-axios.interceptors.response.use(res => {
-	if (res.status !== 200) {
-		// 弹出错误提示，统一显示为网络异常
-		return Promise.reject(res)
-	}
-	return res
-}, handleError)
+// axios.interceptors.response.use(res => {
+// 	if (res.status !== 200) {
+// 		// 弹出错误提示，统一显示为网络异常
+// 		return Promise.reject(res)
+// 	}
+// 	return res
+// }, handleError)
 
 async function httpRequest (options) {
 	// request 有可能是任何类型的数据
@@ -30,36 +30,31 @@ async function httpRequest (options) {
 		endpoint = '',
 		method = 'get',
 		request = {},
-		axiosOptions = {},
-		api,
-		params
+		header = {}
 	} = options
-	if (!api) throw new Error('params api is required!!!')
+	// if (!api) throw new Error('params api is required!!!')
 
 	let res
 
 	try {
-		if (method === 'get') {
-			res = await axios.get(endpoint, {
-				params: request,
-				...axiosOptions
+		res = await new Promise(function (resolve, reject) {
+			wx.request({
+				method,
+				url: endpoint,
+				data: request,
+				success (res) {
+					resolve(res)
+				},
+				header,
+				fail (error) {
+					reject(error)
+				}
 			})
-		} else {
-			if (params) {
-				res = await axios[method](endpoint, '', {
-					...axiosOptions,
-					params: params
-				})
-			} else {
-				res = await axios[method](endpoint, request, {
-					...axiosOptions
-				})
-			}
-		}
+		})
 	} catch (error) {
 		return Promise.reject(error)
 	}
-	return res && res.data
+	return res ? (res.data ? res.data : res) : res
 }
 
 /**
@@ -70,7 +65,7 @@ async function httpRequest (options) {
  *  api 请求的标识符 Symbol
  *  request 请求的参数
  *  waiting 是否显示出加载loading
- *  axiosOptions axios的相关配置
+ *  header header的相关配置
  * }
  */
 export default function callApi (options) {

@@ -1,5 +1,10 @@
 <template>
     <div class="collection-container">
+        <div class="floatation">
+            <div class="float-sphere">
+                100
+            </div>
+        </div>
         <div class="circle">
             <div>
                 今日步数
@@ -13,6 +18,8 @@
             <div>
                 （每日24点清零）
             </div>
+        </div>
+        <div class="floatation">
         </div>
     </div>
 </template>
@@ -31,6 +38,24 @@ div.collection-container {
     .flex;
     flex-direction: row;
     justify-content: center;
+    .floatation {
+        height: 40px;
+        flex: 1;
+        .flex;
+        .float-sphere {
+            position: relative;
+            flex: 1;
+            width: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: red;
+            border-radius: 50%;
+            top: -20px;
+            animation: move 2s infinite;
+            animation-timing-function: linear;
+            animation-direction: alternate;
+        }
+    }
     .circle {
         .flex;
         justify-content: center;
@@ -62,6 +87,15 @@ div.collection-container {
         }
         to {
             transform: scale(1.2);
+        }
+    }
+
+    @keyframes move {
+        from {
+            top: -20px;
+        }
+        to {
+            top: 20px;
         }
     }
 </style>

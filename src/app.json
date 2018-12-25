@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/main",
     "pages/user/main",
+    "pages/friends-ranking/main",
     "pages/edit-address/main",
     "pages/addresslist/main",
     "pages/goods-details/main",

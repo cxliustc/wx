@@ -1,4 +1,5 @@
 <script>
+import {homeApis} from './apis/index.js'
 export default {
 	created () {
 		// 调用API从本地缓存中获取数据
@@ -7,7 +8,55 @@ export default {
 		wx.setStorageSync('logs', logs)
 
 		console.log('app created and cache logs by setStorageSync')
-	}
+    debugger
+    // 获取用户信息
+    wx.login({
+      success: function (resLogin) {
+        if (resLogin.code) {
+          debugger
+          homeApis.login({
+            request: {
+              code: resLogin.code
+            }
+          })
+          .then(res => {
+            // 存储token
+            console.log('res')
+            debugger
+            wx.setStorageSync('token', res.data.accessToken)
+            return new Promise((resolve, reject) => {
+              wx.getWeRunData({
+                success (resData) {
+                  resolve(resData)
+                },
+                fail (error) {
+                  reject(error)
+                }
+              })
+            })
+          })
+          .then(res => {
+            debugger
+            return homeApis.decrypt({
+              request: {
+                encryptedData: res.encryptedData,
+                iv: res.iv
+              },
+              header: {
+                Authorization: wx.getStorageSync('token')
+              }
+            })
+          })
+          .then(res => {
+            console.log('encryptedData', res)
+          })
+          .catch(error => {
+            debugger
+          })
+        }
+      }
+	  })
+  }
 }
 </script>
 

@@ -1,7 +1,10 @@
 <template>
     <div class="home-page">
 		<collection></collection>
-		<div class="field-items-section">
+		<text selectable="true">
+		{{code}}
+		</text>
+		<div class="field-items-section" @click="test">
 			<header>
 				<span>新人专区</span>
 				<span class='gray'>新人限时专享</span>
@@ -28,7 +31,7 @@
     </div>
 </template>
 <script>
-import {homeApis} from '../../apis'
+import {homeApis} from '../../apis/index.js'
 import ProductList from '../components/product-list'
 import TabBar from '../components/tab-bar'
 // import SwiperList from '../components/swiper-list'
@@ -105,7 +108,8 @@ export default {
 			fieldItems,
 			list,
 			current: 'homepage',
-			tabBarList
+			tabBarList,
+			code: ''
 		}
 	},
 	components: {
@@ -119,8 +123,47 @@ export default {
 			this.setData({
 				current: detail.key
 			});
+		},
+		test () {
+			let that = this
+			wx.login({
+				success: function (resLogin) {
+					if (resLogin.code) {
+						that.code = resLogin.code
+						homeApis.login({
+							request: {
+							code: resLogin.code
+							}
+						}).then(res => {
+							console.log(res)
+							wx.getWeRunData({
+								success (resData) {
+									console.log(resData)
+									debugger
+								},
+								fail (error) {
+									debugger
+								}
+							})
+						}).catch(error => {
+							debugger
+						})
+					}
+				}
+			})
 		}
-	}
+	},
+	created () {
+		// debugger
+		homeApis.getGoodsList().then(function (res) {
+			const response = res
+			console.log(res)
+			// debugger
+		}).catch(function (error) {
+			console.log(error)
+			// debugger
+		})
+	},
 }
 </script>
 <style lang="less" scoped>
