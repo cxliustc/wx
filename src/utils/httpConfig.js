@@ -36,6 +36,9 @@ async function httpRequest (options) {
 
 	let res
 
+	header = Object.assign(header, {
+		Authorization: wx.getStorageSync('token') || ''
+	})
 	try {
 		res = await new Promise(function (resolve, reject) {
 			wx.request({

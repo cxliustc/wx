@@ -21,8 +21,6 @@ export default {
           })
           .then(res => {
             // 存储token
-            console.log('res')
-            debugger
             wx.setStorageSync('token', res.data.accessToken)
             return new Promise((resolve, reject) => {
               wx.getWeRunData({
@@ -41,9 +39,6 @@ export default {
               request: {
                 encryptedData: res.encryptedData,
                 iv: res.iv
-              },
-              header: {
-                Authorization: wx.getStorageSync('token')
               }
             })
           })

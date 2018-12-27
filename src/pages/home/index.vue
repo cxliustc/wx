@@ -9,7 +9,7 @@
 				<span>新人专区</span>
 				<span class='gray'>新人限时专享</span>
 			</header>
-			<product-list :list="fieldItems"></product-list>
+			<product-list :list="goodsList"></product-list>
 			<scroll-view scroll-x>
 				<div class="scroll-container">
 					<a href="" v-for='(item, index) in list' :key='index'>
@@ -109,12 +109,12 @@ export default {
 			list,
 			current: 'homepage',
 			tabBarList,
-			code: ''
+			code: '',
+			goodsList: []
 		}
 	},
 	components: {
 		'product-list': ProductList,
-		// 'swiper-list': SwiperList,
 		'collection': Collection,
 		'tab-bar': TabBar
 	},
@@ -123,45 +123,14 @@ export default {
 			this.setData({
 				current: detail.key
 			});
-		},
-		test () {
-			let that = this
-			wx.login({
-				success: function (resLogin) {
-					if (resLogin.code) {
-						that.code = resLogin.code
-						homeApis.login({
-							request: {
-							code: resLogin.code
-							}
-						}).then(res => {
-							console.log(res)
-							wx.getWeRunData({
-								success (resData) {
-									console.log(resData)
-									debugger
-								},
-								fail (error) {
-									debugger
-								}
-							})
-						}).catch(error => {
-							debugger
-						})
-					}
-				}
-			})
 		}
 	},
 	created () {
-		// debugger
-		homeApis.getGoodsList().then(function (res) {
+		homeApis.getGoodsList().then((res) => {
 			const response = res
-			console.log(res)
-			// debugger
+			this.goodsList = res.data
 		}).catch(function (error) {
 			console.log(error)
-			// debugger
 		})
 	},
 }

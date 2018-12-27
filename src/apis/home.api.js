@@ -9,20 +9,19 @@ class HomeApi {
         endpoint: 'https://bushu.yooqun.com/api/product/query'
     })
     login = ({request}) => callApi({
-       endpoint: 'https://bushu.yooqun.com/api/user/authorize',
-       request,
-       method: 'post'
+        endpoint: 'https://bushu.yooqun.com/api/user/authorize',
+        request,
+        method: 'post'
     })
     getUserInfo = ({request}) => callApi({
         endpoint: '',
         request,
         method: 'post'
     })
-    decrypt = ({request, header}) => callApi({
+    decrypt = ({request}) => callApi({
         endpoint: 'https://bushu.yooqun.com/api/user/decrypt',
         method: 'post',
-        request,
-        header
+        request
     })
 }
 export default new HomeApi()

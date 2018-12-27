@@ -6,21 +6,21 @@
                     <a class="img-link" href="/pages/goods-details/main">
                         <div>
                             <div class="img-container" :style="{width, height: width}">
-                                <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=180312266,3639093672&fm=173&app=25&f=JPEG?w=218&h=146&s=5A27AE40185A464F0AABF952030050FA" alt="">
+                                <img :src='item.picture' alt="">
                             </div>
                         </div>
                         <div class="title">
                             <span>
-                                hello world 
+                                {{item.name}} 
                             </span>
                         </div>
                     </a>
                     <div>
                         <span class="price">
                             <i class="iconfont icon-hotfill"></i>
-                            9
+                            {{item.power}}
                         </span>
-                        <span class="exchange-number">兑换人数：12342</span>
+                        <span class="exchange-number">兑换人数：{{item.num}}</span>
                     </div>
                     <a class="detail-link" href="">
                         <div>
@@ -52,6 +52,7 @@ export default {
     },
     methods: {
         handleProductList (list) {
+            console.log('list:' + list)
 			const dyadicArray = []
 			let linearArray = []
 			list.forEach((item, index) => {
@@ -128,10 +129,11 @@ ul {
                         font-weight: bold;
                         >span {
                             .default-flex(-webkit-box);
-                            white-space: pre-wrap;
+                            // white-space: pre-wrap;
                             font-size: 14px;
                             text-align: left;
                             line-height: 20px;
+                            height: 40px;
                             margin-top: 5px;
                             margin-bottom: 5px;
                             color: rgb(62, 62, 62);
